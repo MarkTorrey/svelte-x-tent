@@ -1,11 +1,7 @@
 import { writable, derived } from "svelte/store";
 import { webMercatorToGeographic } from "@arcgis/core/geometry/support/webMercatorUtils";
 
-const isEmpty = (obj) => {
-  return Object.keys(obj).length === 0;
-};
-
-export const mapView = writable({ center: { x: 0, y: 0 }, extent: {} });
+export const mapView = writable({ center: { x: 0, y: 0 }, scale: 0, extent: {} });
 
 export const wgsCenterPoint = derived(mapView, ($mapView) =>
   webMercatorToGeographic($mapView.center),
