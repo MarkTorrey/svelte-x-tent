@@ -2,17 +2,16 @@
   // @ts-nocheck
 
   import { mapSize, mapView } from "./stores.js";
-  import { setContext, onMount } from "svelte";
+  import { onMount } from "svelte";
 
-  import MapView from "@arcgis/core/views/MapView";
-  import BasemapGallery from "@arcgis/core/widgets/BasemapGallery";
-  import Expand from "@arcgis/core/widgets/Expand";
-  import * as ReactiveUtils from "@arcgis/core/core/reactiveUtils";
+  import EsriMapView from "@arcgis/core/views/MapView";
+  import EsriBasemapGallery from "@arcgis/core/widgets/BasemapGallery";
+  import EsriExpand from "@arcgis/core/widgets/Expand";
+  import EsriSearch from "@arcgis/core/widgets/Search";
+  import * as EsriReactiveUtils from "@arcgis/core/core/reactiveUtils";
 
   onMount(() => {
-    console.log("Esri map - on mount");
-
-    const view = new MapView({
+    const view = new EsriMapView({
       container: "mapDiv",
       map: {
         basemap: "gray-vector",
@@ -25,7 +24,7 @@
     });
 
     const viewDidLoad = () => {
-      ReactiveUtils.watch(
+      EsriReactiveUtils.watch(
         () => [view.stationary, view.scale, view.zoom, view.center, view.extent],
         ([stationary, scale, zoom, center, extent]) => {
           if (stationary) {
@@ -36,9 +35,8 @@
       mapView.set(view);
     };
 
-    const bmg = new BasemapGallery({ view: view });
-
-    const exp = new Expand({
+    const bmg = new EsriBasemapGallery({ view: view });
+    const bmgExpand = new EsriExpand({
       expandIcon: "basemap",
       view: view,
       content: bmg,
@@ -46,7 +44,15 @@
       closeOnEsc: true,
     });
 
-    view.ui.add(exp, "top-left");
+    const searchWidget = new EsriSearch({ view: view });
+    const searchExpand = new EsriExpand({
+      expandIcon: "search",
+      view: view,
+      content: searchWidget,
+      group: "top-left",
+    });
+
+    view.ui.add([bmgExpand, searchExpand], "top-left");
 
     view.when(viewDidLoad);
   });
