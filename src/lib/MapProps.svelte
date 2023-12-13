@@ -6,10 +6,13 @@
 </script>
 
 <div class="cntrl-container">
-  <calcite-select on:calciteSelectChange={selectDidChange}>
-    <calcite-option value="full-size">Full size</calcite-option>
-    <calcite-option value="size-1">900px x 400px</calcite-option>
-  </calcite-select>
+  <calcite-label
+    >Map size
+    <calcite-select on:calciteSelectChange={selectDidChange}>
+      <calcite-option value="full-size">Full size</calcite-option>
+      <calcite-option value="size-1">900px x 400px</calcite-option>
+    </calcite-select>
+  </calcite-label>
 </div>
 
 <style>
