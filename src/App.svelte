@@ -4,6 +4,7 @@
   import EsriMap from "./lib/EsriMap.svelte";
   import ViewProps from "./lib/ViewProps.svelte";
   import MapProps from "./lib/MapProps.svelte";
+  import AddLayer from "./lib/AddLayer.svelte";
 
   const handleAlert = (evt) => {
     const alertElement = document.getElementById("copyAlert");
@@ -26,6 +27,7 @@
     </calcite-alert>
     <calcite-shell-panel slot="panel-end" position="end" id="shell-panel-start">
       <MapProps />
+      <AddLayer on:add-layer={handleAlert} />
       <ViewProps on:copy={handleAlert} />
     </calcite-shell-panel>
     <calcite-panel>
