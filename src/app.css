@@ -1,0 +1,5 @@
+@import "@esri/calcite-components/dist/calcite/calcite.css";
+
+.cntrl-container {
+  padding: 5px;
+}
