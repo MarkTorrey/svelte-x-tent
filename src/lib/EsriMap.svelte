@@ -1,13 +1,19 @@
 <script>
-  import { centerPoint, mapSize, scaleLevel, zoomLevel, extentGeom } from "./stores.js";
+  // @ts-nocheck
+
+  import { mapSize, mapView } from "./stores.js";
+  import { setContext, onMount } from "svelte";
 
   import MapView from "@arcgis/core/views/MapView";
   import BasemapGallery from "@arcgis/core/widgets/BasemapGallery";
   import Expand from "@arcgis/core/widgets/Expand";
   import * as ReactiveUtils from "@arcgis/core/core/reactiveUtils";
-  const createMap = (domNode) => {
+
+  onMount(() => {
+    console.log("Esri map - on mount");
+
     const view = new MapView({
-      container: domNode,
+      container: "mapDiv",
       map: {
         basemap: "gray-vector",
       },
@@ -23,15 +29,15 @@
         () => [view.stationary, view.scale, view.zoom, view.center, view.extent],
         ([stationary, scale, zoom, center, extent]) => {
           if (stationary) {
-            scaleLevel.set(scale);
-            zoomLevel.set(zoom);
-            centerPoint.set(center);
-            extentGeom.set(extent);
+            mapView.set(view);
           }
         },
       );
+      mapView.set(view);
     };
+
     const bmg = new BasemapGallery({ view: view });
+
     const exp = new Expand({
       expandIcon: "basemap",
       view: view,
@@ -39,15 +45,16 @@
       autoCollapse: true,
       closeOnEsc: true,
     });
+
     view.ui.add(exp, "top-left");
 
     view.when(viewDidLoad);
-  };
+  });
 </script>
 
 <div id="map-container">
   <div class={`view-container-${$mapSize}`}>
-    <div class="map-div" use:createMap></div>
+    <div id="mapDiv"></div>
   </div>
 </div>
 
@@ -61,7 +68,7 @@
     background-color: rgba(125, 125, 125, 0.5);
   }
 
-  .map-div {
+  #mapDiv {
     width: 100%;
     height: 100%;
   }

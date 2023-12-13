@@ -1,12 +1,5 @@
 <script>
-  import {
-    zoomLevel,
-    scaleLevel,
-    centerPoint,
-    wgsCenterPoint,
-    wmExtentStr,
-    wgsExtentStr,
-  } from "./stores";
+  import { mapView, wgsCenterPoint, wmExtentStr, wgsExtentStr } from "./stores";
 
   import { createEventDispatcher } from "svelte";
   // @ts-ignore
@@ -36,7 +29,7 @@
   <h3>Map</h3>
   <calcite-label
     >Zoom level
-    <calcite-input id="zoomInput" read-only value={$zoomLevel}>
+    <calcite-input id="zoomInput" read-only value={$mapView.zoom || 0}>
       <div slot="action">
         <calcite-button
           on:click={copyWasClicked}
@@ -51,7 +44,7 @@
   </calcite-label>
   <calcite-label
     >Scale
-    <calcite-input id="scaleInput" read-only value={$scaleLevel}>
+    <calcite-input id="scaleInput" read-only value={$mapView.scale}>
       <div slot="action">
         <calcite-button
           id="scaleBtn"
@@ -118,7 +111,7 @@
         <calcite-input
           id="wmCenterCntrl"
           read-only
-          value={`${$centerPoint.x.toFixed(4)}, ${$centerPoint.y.toFixed(4)}`}
+          value={`${$mapView.center.x.toFixed(4)}, ${$mapView.center.y.toFixed(4)}`}
         >
           <div slot="action">
             <calcite-button
