@@ -1,0 +1,1 @@
+import{cy as e,cz as u}from"./index-eSY5-lt-.js";function s(t,o,r,n){return!(o==null||n==null||t.length<2)&&(t.length===2&&(l[0]=t[0],l[1]=t[1],l[2]=0,t=l),e(t,o,0,r,n,0,1))}const l=u();export{s as t};
