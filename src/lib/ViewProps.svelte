@@ -1,4 +1,13 @@
 <script>
+  import "@esri/calcite-components/dist/components/calcite-button";
+  import "@esri/calcite-components/dist/components/calcite-label";
+  import "@esri/calcite-components/dist/components/calcite-tooltip";
+  import "@esri/calcite-components/dist/components/calcite-tabs";
+  import "@esri/calcite-components/dist/components/calcite-tab-nav";
+  import "@esri/calcite-components/dist/components/calcite-tab-title";
+  import "@esri/calcite-components/dist/components/calcite-tab";
+  import "@esri/calcite-components/dist/components/calcite-text-area";
+
   import { mapView, wgsCenterPoint, wmExtentStr, wgsExtentStr } from "./stores";
 
   import { createEventDispatcher } from "svelte";

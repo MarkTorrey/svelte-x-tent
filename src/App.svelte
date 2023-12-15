@@ -6,6 +6,12 @@
   import MapProps from "./lib/MapProps.svelte";
   import AddLayer from "./lib/AddLayer.svelte";
 
+  import "@esri/calcite-components/dist/components/calcite-shell-panel";
+  import "@esri/calcite-components/dist/components/calcite-panel";
+  import "@esri/calcite-components/dist/components/calcite-alert";
+  import "@esri/calcite-components/dist/components/calcite-input";
+  import "@esri/calcite-components/dist/components/calcite-shell";
+
   const handleAlert = (evt) => {
     const alertElement = document.getElementById("copyAlert");
     alertElement.setAttribute("icon", "copy-to-clipboard");
@@ -27,7 +33,9 @@
     </calcite-alert>
     <calcite-shell-panel slot="panel-end" position="end" id="shell-panel-start">
       <MapProps />
+
       <AddLayer on:add-layer={handleAlert} />
+
       <ViewProps on:copy={handleAlert} />
     </calcite-shell-panel>
     <calcite-panel>

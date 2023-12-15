@@ -8,6 +8,7 @@
   import EsriBasemapGallery from "@arcgis/core/widgets/BasemapGallery";
   import EsriExpand from "@arcgis/core/widgets/Expand";
   import EsriSearch from "@arcgis/core/widgets/Search";
+
   import * as EsriReactiveUtils from "@arcgis/core/core/reactiveUtils";
 
   onMount(() => {

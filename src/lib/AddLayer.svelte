@@ -4,6 +4,10 @@
   import { createEventDispatcher } from "svelte";
   import { mapView } from "./stores";
 
+  import "@esri/calcite-components/dist/components/calcite-input";
+  import "@esri/calcite-components/dist/components/calcite-label";
+  import "@esri/calcite-components/dist/components/calcite-button";
+
   const dispatch = createEventDispatcher();
 
   const addLayerBtnWasClicked = () => {
