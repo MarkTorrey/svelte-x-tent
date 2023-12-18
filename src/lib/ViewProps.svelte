@@ -67,6 +67,7 @@
     <calcite-tooltip reference-element="scaleBtn">Copy scale</calcite-tooltip>
   </calcite-label>
 
+  <h3>Extent</h3>
   <calcite-tabs bordered layout="center">
     <calcite-tab-nav slot="title-group">
       <calcite-tab-title selected>WGS84 (4326)</calcite-tab-title>
