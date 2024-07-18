@@ -14,6 +14,12 @@
       creationMode: "update",
       availableCreateTools: ["rectangle"],
     });
+
+    const sketchDidComplete = (evt) => {
+      console.log("Sketch Complete");
+    };
+
+    sketchWidget.on("create", sketchDidComplete);
   };
 </script>
 

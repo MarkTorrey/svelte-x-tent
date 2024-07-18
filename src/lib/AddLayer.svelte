@@ -37,8 +37,16 @@
   <calcite-label
     >Add a reference layer by item ID
     <calcite-input id="itemIdInput" placeholder="Layer item ID (b5d71d19fd4b43fbb88abf07773ec0c7)">
-      <calcite-button id="addLayerBtn" slot="action" on:click={addLayerBtnWasClicked}
-        >Add to map</calcite-button
+      <calcite-button
+        type="button"
+        id="addLayerBtn"
+        slot="action"
+        role="button"
+        tabindex="0"
+        on:click={addLayerBtnWasClicked}
+        on:keyup={(evt) => {
+          console.log("button keyup");
+        }}>Add to map</calcite-button
       >
     </calcite-input>
   </calcite-label>

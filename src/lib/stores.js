@@ -1,16 +1,22 @@
+// @ts-nocheck
 import { writable, derived } from "svelte/store";
 import { webMercatorToGeographic } from "@arcgis/core/geometry/support/webMercatorUtils";
 
 export const mapView = writable({ center: { x: 0, y: 0 }, scale: 0, extent: {} });
 
-export const wgsCenterPoint = derived(mapView, ($mapView) =>
-  webMercatorToGeographic($mapView.center),
-);
+export const CurrentExtent = writable({ center: { x: 0, y: 0 }, scale: 0 });
 
-export const wmExtentStr = derived(mapView, ($mapView) => JSON.stringify($mapView.extent, null, 4));
+export const wmExtentStr = derived(CurrentExtent, (mv) => {
+  return JSON.stringify(mv.extent, null, 4);
+});
 
-export const wgsExtentStr = derived(mapView, ($mapView) => {
-  const wgsExtent = webMercatorToGeographic($mapView.extent);
+export const wgsCenterPoint = derived(mapView, (mv) => {
+  return webMercatorToGeographic(mv.center);
+});
+
+export const wgsExtentStr = derived(mapView, (mv) => {
+  let extent = mv.extent;
+  const wgsExtent = webMercatorToGeographic(extent);
   return JSON.stringify(wgsExtent, null, 4);
 });
 

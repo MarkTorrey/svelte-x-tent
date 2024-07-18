@@ -46,6 +46,11 @@
           data-copy-msg="Zoom level"
           id="zoomBtn"
           icon-start="copy-to-clipboard"
+          role="button"
+          tabindex="0"
+          on:keyup={() => {
+            console.log("zoom keyup");
+          }}
         ></calcite-button>
       </div>
     </calcite-input>
@@ -61,6 +66,11 @@
           data-copy-id="scaleInput"
           data-copy-msg="Scale level"
           icon-start="copy-to-clipboard"
+          role="button"
+          tabindex="0"
+          on:keyup={() => {
+            console.log("scale keyup");
+          }}
         ></calcite-button>
       </div>
     </calcite-input>
@@ -84,6 +94,11 @@
           <div slot="action">
             <calcite-button
               on:click={copyWasClicked}
+              on:keyup={() => {
+                console.log("center keyup");
+              }}
+              role="button"
+              tabindex="0"
               data-copy-id="wgsCenterCntrl"
               data-copy-msg="WGS84 center point"
               id="wgsCenterBtn"
@@ -104,6 +119,11 @@
         >
           <calcite-button
             on:click={copyWasClicked}
+            on:keyup={() => {
+              console.log("extent keyup");
+            }}
+            role="button"
+            tabindex="0"
             data-copy-id="wgsExtentCntrl"
             data-copy-msg="WGS84 extent"
             id="wgsExtentBtn"
@@ -126,6 +146,11 @@
           <div slot="action">
             <calcite-button
               on:click={copyWasClicked}
+              on:keyup={() => {
+                console.log("center keyup");
+              }}
+              role="button"
+              tabindex="0"
               data-copy-id="wmCenterCntrl"
               data-copy-msg="Web mercator center point"
               id="copyCenterBtn"
@@ -146,6 +171,11 @@
         >
           <calcite-button
             on:click={copyWasClicked}
+            on:keyup={() => {
+              console.log("extent keyup");
+            }}
+            role="button"
+            tabindex="0"
             data-copy-id="wmExtentCntrl"
             data-copy-msg="Web mercator extent"
             id="wmExtentBtn"
