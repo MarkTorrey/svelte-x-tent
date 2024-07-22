@@ -35,8 +35,8 @@
 
 <div class="cntrl-container">
   <calcite-label
-    >Add a reference layer by item ID
-    <calcite-input id="itemIdInput" placeholder="Layer item ID (b5d71d19fd4b43fbb88abf07773ec0c7)">
+    >Add a reference layer by its itemID
+    <calcite-input id="itemIdInput" placeholder="b5d71d19fd4b43fbb88abf07773ec0c7">
       <calcite-button
         type="button"
         id="addLayerBtn"

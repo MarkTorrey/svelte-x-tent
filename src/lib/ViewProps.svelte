@@ -58,7 +58,7 @@
   </calcite-label>
   <calcite-label
     >Scale
-    <calcite-input id="scaleInput" read-only value={$mapView.scale}>
+    <calcite-input id="scaleInput" read-only value={$mapView.scale || 0}>
       <div slot="action">
         <calcite-button
           id="scaleBtn"
@@ -86,11 +86,7 @@
     <calcite-tab selected>
       <calcite-label
         >Center
-        <calcite-input
-          id="wgsCenterCntrl"
-          value={`${$wgsCenterPoint.x.toFixed(4)}, ${$wgsCenterPoint.y.toFixed(4)}`}
-          read-only
-        >
+        <calcite-input id="wgsCenterCntrl" value={`${$wgsCenterPoint}`} read-only>
           <div slot="action">
             <calcite-button
               on:click={copyWasClicked}

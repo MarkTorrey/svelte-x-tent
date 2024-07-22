@@ -16,7 +16,7 @@
     });
 
     const sketchDidComplete = (evt) => {
-      console.log("Sketch Complete");
+      mapView.set(evt.graphic.extent);
     };
 
     sketchWidget.on("create", sketchDidComplete);

@@ -1,5 +1,5 @@
 <script>
-  import { mapSize, CurrentExtent, mapView } from "./stores";
+  import { mapSize, mapView } from "./stores";
   import EsriSketch from "./EsriSketch.svelte";
 
   import "@esri/calcite-components/dist/components/calcite-label";
@@ -13,9 +13,9 @@
   const ExtentType = Object.freeze({ MAP: "MAP", GRAPHIC: "GRAPHIC" });
   let extentType = { extType: ExtentType.MAP };
 
-  $: extentType.extType === ExtentType.MAP
-    ? CurrentExtent.set($mapView.extent)
-    : CurrentExtent.set(null);
+  // $: extentType.extType === ExtentType.MAP
+  //   ? CurrentExtent.set($mapView.extent)
+  //   : CurrentExtent.set(null);
 
   const selectDidChange = (evt) => {
     mapSize.set(evt.target.value);
@@ -24,8 +24,7 @@
   const ddSelectDidChange = (evt) => {
     console.log("Drop down select did change");
     extentType.extType = evt.target.selectedItems[0].label;
-
-    CurrentExtent.set($mapView.extent);
+    // CurrentExtent.set($mapView.extent);
     document.getElementById("typeBtn").innerHTML = `Use extent from ${extentType.extType}`;
   };
 </script>
