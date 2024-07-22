@@ -8,20 +8,23 @@
   import EsriBasemapGallery from "@arcgis/core/widgets/BasemapGallery";
   import EsriExpand from "@arcgis/core/widgets/Expand";
   import EsriSearch from "@arcgis/core/widgets/Search";
+  import EsriConfig from "@arcgis/core/config.js";
 
   import * as EsriReactiveUtils from "@arcgis/core/core/reactiveUtils";
 
   onMount(() => {
+    EsriConfig.apiKey =
+      "AAPT85fOqywZsicJupSmVSCGrjLA1W20h_mLeh2lh6o9CJyXYBAoKjdUrh3K_IvP1ZS_RfWU6gpdTf2or3nnljXiE-VqENQiXJxKfVUc0i01VsXUKJsof8_Z5dsDu6AUkSO5bREc9tFYhhajs8gs-dtsFk3cZC41DL5y68iHe7exB8gXs_t3wuhuK1tyr4Y7AKhl-3ffbltk_9mmTfNY0VtPWO86Cj82XZHsS1-sP9NKAGg.AT2_H5Lo5hPL";
     const view = new EsriMapView({
       container: "mapDiv",
       map: {
-        basemap: "gray-vector",
+        basemap: "arcgis/outdoor",
       },
       constraints: {
         snapToZoom: true,
       },
-      center: [-80.84521293637971, 35.22535861915421],
-      zoom: 16,
+      center: [-95.6926, 38.7408],
+      zoom: 4,
     });
 
     const viewDidLoad = () => {
@@ -45,7 +48,19 @@
       closeOnEsc: true,
     });
 
-    const searchWidget = new EsriSearch({ view: view });
+    const searchWidget = new EsriSearch({
+      view: view,
+      includeDefaultSources: false,
+      sources: [
+        {
+          name: "arcgis geocoding services",
+          singleLineFieldName: "SingleLine",
+          placeholder: "Find place or address",
+          apiKey: EsriConfig.apiKey,
+          url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+        },
+      ],
+    });
     const searchExpand = new EsriExpand({
       expandIcon: "search",
       view: view,
