@@ -27,7 +27,7 @@
 
 <main>
   <calcite-shell>
-    <calcite-alert id="copyAlert" auto-close auto-close-duration="fast" placement="bottom-start">
+    <calcite-alert id="copyAlert" auto-close auto-close-duration="fast" placement="top">
       <div slot="message" name="alertMessage" id="alertMessage"></div>
       <div slot="title" name="alertTitle" id="alertTitle"></div>
     </calcite-alert>

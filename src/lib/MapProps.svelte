@@ -11,7 +11,7 @@
   import "@esri/calcite-components/dist/components/calcite-dropdown-item";
 
   const ExtentType = Object.freeze({ MAP: "MAP", GRAPHIC: "GRAPHIC" });
-  let extentType = { extType: ExtentType.MAP };
+  let extentType = $state({ extType: ExtentType.MAP });
 
   // $: extentType.extType === ExtentType.MAP
   //   ? CurrentExtent.set($mapView.extent)

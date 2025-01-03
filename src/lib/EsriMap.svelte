@@ -1,24 +1,26 @@
 <script>
   // @ts-nocheck
 
-  import { mapSize, mapView } from "./stores.js";
+  import { mapSize, mapView, key } from "./stores.js";
   import { onMount } from "svelte";
 
   import EsriMapView from "@arcgis/core/views/MapView";
   import EsriBasemapGallery from "@arcgis/core/widgets/BasemapGallery";
+  import EsriMeasurement from "@arcgis/core/widgets/Measurement";
   import EsriExpand from "@arcgis/core/widgets/Expand";
   import EsriSearch from "@arcgis/core/widgets/Search";
   import EsriConfig from "@arcgis/core/config.js";
+  import EsriGraphic from "@arcgis/core/Graphic.js";
 
   import * as EsriReactiveUtils from "@arcgis/core/core/reactiveUtils";
 
   onMount(() => {
-    EsriConfig.apiKey =
-      "AAPT85fOqywZsicJupSmVSCGrjLA1W20h_mLeh2lh6o9CJyXYBAoKjdUrh3K_IvP1ZS_RfWU6gpdTf2or3nnljXiE-VqENQiXJxKfVUc0i01VsXUKJsof8_Z5dsDu6AUkSO5bREc9tFYhhajs8gs-dtsFk3cZC41DL5y68iHe7exB8gXs_t3wuhuK1tyr4Y7AKhl-3ffbltk_9mmTfNY0VtPWO86Cj82XZHsS1-sP9NKAGg.AT2_H5Lo5hPL";
+    EsriConfig.apiKey = $key;
+
     const view = new EsriMapView({
       container: "mapDiv",
       map: {
-        basemap: "arcgis/outdoor",
+        basemap: "osm/light-gray",
       },
       constraints: {
         snapToZoom: true,
@@ -27,12 +29,34 @@
       zoom: 4,
     });
 
+    view.ui.move("zoom", "bottom-right");
+
+    const addCenterGraphic = (atPoint) => {
+      const g = new EsriGraphic({
+        geometry: atPoint,
+        symbol: {
+          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+          style: "square",
+          color: "blue",
+          size: "8px", // pixels
+          outline: {
+            // autocasts as new SimpleLineSymbol()
+            color: [255, 255, 0],
+            width: 3, // points
+          },
+        },
+      });
+      view.graphics.removeAll();
+      view.graphics.add(g);
+    };
+
     const viewDidLoad = () => {
       EsriReactiveUtils.watch(
         () => [view.stationary, view.scale, view.zoom, view.center, view.extent],
         ([stationary, scale, zoom, center, extent]) => {
           if (stationary) {
             mapView.set(view);
+            addCenterGraphic(view.center);
           }
         },
       );
@@ -40,12 +64,14 @@
     };
 
     const bmg = new EsriBasemapGallery({ view: view });
+
     const bmgExpand = new EsriExpand({
       expandIcon: "basemap",
       view: view,
       content: bmg,
       autoCollapse: true,
       closeOnEsc: true,
+      group: "mapControls",
     });
 
     const searchWidget = new EsriSearch({
@@ -61,14 +87,15 @@
         },
       ],
     });
+
     const searchExpand = new EsriExpand({
       expandIcon: "search",
       view: view,
       content: searchWidget,
-      group: "top-left",
+      group: "mapControls",
     });
 
-    view.ui.add([bmgExpand, searchExpand], "top-left");
+    view.ui.add([bmgExpand, searchExpand], "top-trailing");
 
     view.when(viewDidLoad);
   });
