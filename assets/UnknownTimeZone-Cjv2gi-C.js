@@ -1,1 +1,0 @@
-import{ar as e,aK as o}from"./index-Cek7aMWl.js";class n{}function r(t){return t instanceof o?t===n.instance:(t==null?void 0:t.toString().toLowerCase())==="unknown"}function i(t){return r(t)?n.instance:t}n.instance=new e("Etc/UTC");export{i,r,n as t};
