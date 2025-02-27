@@ -3,7 +3,7 @@ import { writable, readable, derived } from "svelte/store";
 import { webMercatorToGeographic } from "@arcgis/core/geometry/support/webMercatorUtils";
 
 export const key = readable(
-  "AAPT85fOqywZsicJupSmVSCGrjLA1W20h_mLeh2lh6o9CJyXYBAoKjdUrh3K_IvP1ZS_RfWU6gpdTf2or3nnljXiE-VqENQiXJxKfVUc0i01VsXUKJsof8_Z5dsDu6AUkSO5bREc9tFYhhajs8gs-dtsFk3cZC41DL5y68iHe7exB8gXs_t3wuhuK1tyr4Y7AKhl-3ffbltk_9mmTfNY0VtPWO86Cj82XZHsS1-sP9NKAGg.AT2_H5Lo5hPL",
+  "AAPTxy8BH1VEsoebNVZXo8HurOy5tg-ziR77dVRpS_5Kw7jXdm2LepxkLq6EHGDFr5AXfq2aDrJJRMfbFxaPHKvHe8o0_uckPtHbw9KYKY9TNVvy-wG42TFGOQLYZLrSBi4ucLLHMwe22cLhs3lVIPwQ1kqSflk5qitYC7AwcuETorjmt120lh6TJuT2mAzHgoniSGjHsWYYz_QYHvINdazrcfeB0H6p-k3UqaTZFZ4ZLbQ.AT1_ftqGaY2j",
 );
 export const mapView = writable({ center: { x: -0, y: -0 }, scale: -0, extent: null });
 
